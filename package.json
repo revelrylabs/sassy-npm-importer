@@ -8,9 +8,6 @@
   },
   "author": "Joel Wietelmann",
   "license": "MIT",
-  "peerDependencies": {
-    "node-sass": ">= 3.0.0 < 4"
-  },
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
     "foundation-sites": "^6.1.2",
