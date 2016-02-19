@@ -1,0 +1,6 @@
+@import 'npm://foundation-sites/scss/foundation';
+@import 'vars';
+@include foundation-everything;
+.test {
+  background-color: $body-background;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "sassy-npm-importer",
+  "version": "1.0.0",
+  "description": "It imports SASS from npm packages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Joel Wietelmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "node-sass": ">= 3.0.0 < 4"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "foundation-sites": "^6.1.2",
+    "jasmine": "^2.4.1",
+    "node-sass": ">= 3.0.0 < 4"
+  }
+}
