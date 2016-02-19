@@ -1,12 +1,22 @@
 {
   "name": "sassy-npm-importer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "It imports SASS from npm packages.",
+  "keywords": ["sass", "scss", "npm", "importer", "custom", "prefix", "gulp", "grunt", "webpack"],
+  "homepage": "https://github.com/revelrylabs/sassy-npm-importer",
   "main": "index.js",
   "scripts": {
     "test": "jasmine"
   },
-  "author": "Joel Wietelmann",
+  "author": {
+    "name": "Revelry Labs, LLC",
+    "email": "hello@revelry.co",
+    "url": "http://revelry.co"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/revelrylabs/sassy-npm-importer.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
