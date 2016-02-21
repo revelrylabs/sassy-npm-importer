@@ -30,4 +30,14 @@ Create a SASS file that `@import`s from the npm package, using a prefix. The def
 
 ## Options
 
-Currently there is only one option, `prefix`. In the above example, one could change `createImporter()` to `createImporter({prefix: '~/'})` and then `@import 'npm://foundation-sites/scss/foundation'` to `@import '~/foundation-sites/scss/foundation'`.
+### `debug`
+More verbose output.
+
+### `prefix`
+Overrides the default `npm://` prefix to match to node modules.
+```
+createImporter({prefix: '~/'})
+```
+```
+@import '~/foundation-sites/scss/foundation'
+```

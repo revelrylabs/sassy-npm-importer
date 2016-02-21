@@ -1,6 +1,6 @@
 {
   "name": "sassy-npm-importer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "It imports SASS from npm packages.",
   "keywords": ["sass", "scss", "npm", "importer", "custom", "prefix", "gulp", "grunt", "webpack"],
   "homepage": "https://github.com/revelrylabs/sassy-npm-importer",

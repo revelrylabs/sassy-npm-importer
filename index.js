@@ -20,6 +20,11 @@ function validateAndAddDefaultsToOptions(options) {
 function createImporter(options) {
   validateAndAddDefaultsToOptions(options = options || {});
   var prefixRegex = new RegExp('^'+options.prefix);
+  var debug = function() {
+    if(options.debug) {
+      console.log.apply(console, arguments);
+    }
+  };
 
   // The actual importer function.
   return function(url, prev, done) {
@@ -31,6 +36,8 @@ function createImporter(options) {
       return cb(null, true);
     }
 
+    debug('Matched ' + url);
+
     // Rewrite (for example)...
     //  "npm://node-module/stuff"
     //  to...
@@ -40,6 +47,8 @@ function createImporter(options) {
     var packagePathRegex = new RegExp('.*/node_modules/(?:[^/]+/)*' + packageName);
     parts[0] = require.resolve(packageName).match(packagePathRegex)[0];
     var next = parts.join('/');
+
+    debug('Replaced with ' + next);
 
     return cb({file: next});
   };

@@ -4,7 +4,7 @@ var createImporter = require('../index.js');
 function renderSass(file, prefix) {
   return sass.renderSync({
     file: [__dirname, 'support', file].join('/'),
-    importer: createImporter({prefix: prefix}),
+    importer: createImporter({prefix: prefix, debug: true}),
     outputStyle: 'compressed',
   }).css.toString();
 }
