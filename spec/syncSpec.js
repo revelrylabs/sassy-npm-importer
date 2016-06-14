@@ -30,4 +30,9 @@ describe('synchronous rendering', function() {
     var output = renderSass('bootstrap-sass.scss');
     expect(output.indexOf('.test{background-color:#fff}')).toBeGreaterThan(0);
   });
+
+  it('can use font-awesome', function() {
+    var output = renderSass('font-awesome.scss');
+    expect(output.indexOf("@font-face{font-family:'FontAwesome';")).toBeGreaterThan(0);
+  })
 })
