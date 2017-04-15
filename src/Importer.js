@@ -1,57 +1,95 @@
 var url = require('url');
-var protocolRegistry = require('./ProtocolRegistry.js');
+var path = require('path');
+var resolve = require('resolve');
 
 class Importer {
 
   constructor(options) {
-    this.options = options || {};
+    this.debug = false;
+    this.prefix = null;
 
-    if (this.options.prefix != null) {
-      if (typeof(this.options.prefix) !== 'string') {
-        throw new Error('options.prefix must be string');
-      }
-    }
+    this.setDebug(options.debug);
+    this.setPrefix(options.prefix);
   }
 
-  debug() {
-    if (this.options.debug) {
+  log() {
+    if (this.debug) {
       console.log.apply(console, arguments);
     }
   }
 
   // The actual importer function.
   handle(req, prev) {
-    // If a prefix is defined, rewrite to use npm's libraries
-    if (this.options.prefix) {
-      req = req.replace(new RegExp("^" + this.options.prefix, "g"), "npm://");
+    // If a prefix is defined, rewrite to use npm's packages
+    if (this.prefix) {
+      req = req.replace(new RegExp("^" + this.prefix, "g"), "npm://");
     }
 
     // Convert the URL from a String to an Object
     req = url.parse(req);
 
     // If the protocol is registered, then run the conversion
-    if (req.protocol == null) {
+    if (req.protocol != "npm:") {
       return null;
     }
 
-    this.debug('Source: ' + req.href);
+    this.log('Source: ' + req.href);
 
-    var resolver = this.protocolRegistry.get(req.protocol);
+    var resolver = function (req) {
+      // If we're requesting the root of the package
+      try {
+        if ([null, '/'].indexOf(req.pathname) != -1) {
+          // Try and load the main file
+          return resolve.sync(req.host, {
+            basedir: path.resolve(process.cwd())
+          });
+        }
+      } catch (e) {
+        // Do nothing on error, let SASS handle it
+      }
+
+      return resolve.sync(
+        req.host + req.path, {
+          isFile: function() { return true; }, // Let SASS handle it from here
+          basedir: path.resolve(process.cwd())
+        }
+      );
+    }
 
     var res = resolver(req);
-    this.debug('Destination: ' + res);
+    this.log('Destination: ' + res);
 
-    return {
-      file: res
-    };
+    return { file: res };
   };
 
-  setProtocolRegistry(protocolRegistry) {
-    this.protocolRegistry = protocolRegistry;
+  /**
+   * Accessor/Mutator: prefix
+   */
+
+  setPrefix(prefix) {
+    if (prefix == null) {
+      this.prefix = null;
+      return;
+    }
+
+    if (typeof(prefix) === 'string') {
+      this.prefix = prefix;
+      return;
+    }
+
+    throw new Error('Prefix must be string');
   }
 
-  getProtocolRegistry() {
-    return this.protocolRegistry;
+  getPrefix() {
+    return this.prefix;
+  }
+
+  setDebug(debug) {
+    this.debug = (debug == true);
+  }
+
+  getDebug() {
+    return this.debug;
   }
 }
 

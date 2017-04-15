@@ -2,13 +2,15 @@
 
 # sassy-npm-importer
 
-Import SASS from package managers using customizable protocols. Comes with
-support for node package manager (via `npm://`) and bower (via `bower://`).
+Import SASS from npm via a customizable prefix.
 
 ```
 @import "npm://reset-scss/";
-@import "bower://reset-scss/";
 ```
+
+Looking for bower?
+Try [sassy-bower-importer](https://github.com/revelrylabs/sassy-bower-importer)
+from [Revelry](https://github.com/revelrylabs).
 
 &nbsp;
 
@@ -16,7 +18,6 @@ support for node package manager (via `npm://`) and bower (via `bower://`).
 
 ```
 npm install --save sassy-npm-importer
-npm install --save bower                    # if you want to use bower
 ```
 
 In practice, you would probably be using a task runner (like Gulp), this is an
@@ -41,14 +42,13 @@ the importer. This example shows you how to import the
 `foundation-sites` package.
 
 ```
-npm install --save node-sass                # for this example
-npm install --save foundation-sites         # example package
-bower install --save foundation-sites       # example package
+npm install --save node-sass sassy-npm-importer  # required
+npm install --save foundation-sites              # example
 ```
 
 This is an example of how to provide the importer directly to `node-sass`:
 
-### node: `index.js`
+### `index.js`
 
 ```
 var sass = require('node-sass');
@@ -62,15 +62,9 @@ var result = sass.renderSync({
 
 Create a SASS file that `@import`s from a package manager.
 
-### npm: `styles.scss`
+### `styles.scss`
 ```
 @import 'npm://foundation-sites/scss/foundation';
-@include foundation-everything;
-```
-
-### bower: `styles.scss`
-```
-@import 'bower://foundation-sites/scss/foundation';
 @include foundation-everything;
 ```
 
@@ -78,9 +72,9 @@ Create a SASS file that `@import`s from a package manager.
 
 ## Importing packages
 
-Some node and bower packages contain a `main` property which points to a SASS
-file. Instead of having to enter the long path to a file, you can simply use
-the package name and this main file is included.
+Some node packages contain a `main` property which points to a SASS file.
+Instead of having to enter the long path to a file, you can simply use the
+package name and this main file is included.
 
 For example, if a dependency had a `package.json` file which was similar to:
 
@@ -123,10 +117,9 @@ More verbose output.
 
 ### options.prefix
 
-Attaches a prefix that rewrites to `npm://` to node modules.
+Use a custom prefix instead of `npm://`.
 
 * Since: 1.0.0
-* Deprecated: 2.1.0
 
 ```
 importer({prefix: '~/'})
@@ -136,42 +129,6 @@ importer({prefix: '~/'})
 @import '~/foundation-sites/scss/foundation'
 # is now the same as
 @import 'npm://foundation-sites/scss/foundation'
-```
-
-This option is deprecated; its functionality is provided for backwards
-compatibility and has been succeeded by the `ProtocolRegistry`. It should be
-removed and should not be relied upon.
-
-&nbsp;
-
-## Protocol Registry
-
-Allows for custom protocols to be registered so that different package managers
-can integrate with the library.
-
-* Since: 2.1.0
-* Applies globally
-
-Usage: `sassImporter.protocolRegistry.add(String protocol, Function resolver(Object req):String)`
-
-* `String protocol`: the name of protocol being attached, should end with a colon (`:`)
-* `Function resolver(Object req):String`: the function that performs the conversion
-  * Argument `req:Object` the result of passing the import requested file to [url.parse()](https://nodejs.org/docs/latest/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost)
-  * Returns: `String` the location of the file to be imported
-
-Example usage:
-
-```
-var path = require('path');
-var sassImporter = require('sassy-npm-importer');
-
-sassImporter.protocolRegistry.add('project:', function (req) {
-  return req.hostname;
-});
-```
-
-```
-@import "project://filename";
 ```
 
 &nbsp;

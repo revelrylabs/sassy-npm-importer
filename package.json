@@ -1,6 +1,6 @@
 {
   "name": "sassy-npm-importer",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "It imports SASS from npm packages.",
   "keywords": [
     "sass",
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/revelrylabs/sassy-npm-importer",
   "main": "src/index.js",
   "scripts": {
-    "pretest": "npm link ./spec/fixtures/sassy-npm-importer-linked-package && bower install",
+    "pretest": "npm link ./spec/fixtures/sassy-npm-importer-linked-package",
     "test": "jasmine"
   },
   "author": {
@@ -30,7 +30,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "bower": "^1.8.0",
     "bootstrap-sass": "^3.3.6",
     "font-awesome": "^4.6.3",
     "foundation-sites": "^6.1.2",
@@ -38,7 +37,6 @@
     "node-sass": "^4.5.2"
   },
   "dependencies": {
-    "resolve": "^1.3.2",
-    "resolve-bower": "0.0.1"
+    "resolve": "^1.3.2"
   }
 }
