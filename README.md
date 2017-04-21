@@ -1,3 +1,5 @@
+![CI Status](https://travis-ci.org/revelrylabs/sassy-npm-importer.svg?branch=master)
+
 # sassy-npm-importer
 Import SASS from npm via a customizable prefix.
 
