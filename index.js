@@ -43,10 +43,9 @@ function createImporter(options) {
     //  to...
     //  "/Users/me/src/my-project/node_modules/node-module/stuff"
     var parts = url.replace(prefixRegex, '').split('/')
-    var packageName = parts[0];
-    var packagePathRegex = new RegExp('.*/node_modules/(?:[^/]+/)*' + packageName);
-    parts[0] = require.resolve(packageName + '/package.json').match(packagePathRegex)[0];
-    var next = parts.join('/');
+    var packagePath = require.resolve(parts[0] + "/package.json").replace("/package.json", "")
+    parts.shift(0) // drop package name since we have base path
+    var next = packagePath + "/" + parts.join("/");
 
     debug('Replaced with ' + next);
 
