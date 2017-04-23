@@ -1,4 +1,5 @@
 spec
-sassy-npm-importer-linked-package
 node_modules
 .travis.yml
+.bowerrc
+bower.json

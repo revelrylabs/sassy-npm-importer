@@ -1,0 +1,6 @@
+{
+  "name": "sassy-npm-importer",
+  "devDependencies": {
+    "reset-scss": "^2.0.2"
+  }
+}
