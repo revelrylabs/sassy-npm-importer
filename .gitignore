@@ -24,8 +24,8 @@ coverage
 build/Release
 
 # Dependency directory
-node_modules
-sassy-npm-importer-linked-package/node_modules
+/node_modules
+/spec/fixtures/sassy-npm-importer-linked-package/node_modules
 
 # Optional npm cache directory
 .npm
