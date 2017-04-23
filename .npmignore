@@ -1,3 +1,5 @@
 spec
 node_modules
 .travis.yml
+.bowerrc
+bower.json
