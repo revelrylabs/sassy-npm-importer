@@ -2,25 +2,23 @@ var url = require('url');
 var path = require('path');
 var resolver = require('resolve');
 
-class Importer {
-  constructor(options) {
-    this.options = options || {};
+module.exports = function (options) {
+  this.options = options || {};
 
-    if (this.options.prefix != null) {
-      if (typeof(this.options.prefix) !== 'string') {
-        throw new Error('options.prefix must be string');
-      }
+  if (this.options.prefix != null) {
+    if (typeof(this.options.prefix) !== 'string') {
+      throw new Error('options.prefix must be string');
     }
   }
 
-  debug() {
+  this.debug = function () {
     if (this.options.debug) {
       console.log.apply(console, arguments);
     }
   }
 
   // The actual importer function.
-  handle(req, prev) {
+  this.handle = function (req, prev) {
     // If a prefix is defined, rewrite to use npm's libraries
     if (this.options.prefix) {
       req = req.replace(new RegExp("^" + this.options.prefix, "g"), "npm://");
@@ -44,7 +42,7 @@ class Importer {
     };
   };
 
-  resolve(req) {
+  this.resolve = function (req) {
     try {
       if ([null, '/'].indexOf(req.pathname) != -1) {
         // Try and load the main file
@@ -66,5 +64,3 @@ class Importer {
     );
   }
 }
-
-module.exports = Importer;

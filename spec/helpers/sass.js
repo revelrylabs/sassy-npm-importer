@@ -1,5 +1,5 @@
 var sass = require('node-sass');
-var importer = require('../../src/index.js');
+var importer = require('../../src/index.js').importer;
 
 module.exports = {
   sync: function(file, prefix) {

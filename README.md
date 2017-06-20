@@ -21,7 +21,7 @@ example of how to provide the importer directly to `node-sass`:
 
 ```
 var sass = require('node-sass');
-var importer = require('sassy-npm-importer');
+var importer = require('sassy-npm-importer').importer;
 
 var result = sass.renderSync({
   file: __dirname + '/styles.scss',
@@ -48,7 +48,7 @@ This is an example of how to provide the importer directly to `node-sass`:
 
 ```
 var sass = require('node-sass');
-var importer = require('sassy-npm-importer');
+var importer = require('sassy-npm-importer').importer;
 
 var result = sass.renderSync({
   file: __dirname + '/styles.scss',
@@ -62,6 +62,16 @@ Create a SASS file that `@import`s from a package manager.
 ```
 @import 'npm://foundation-sites/scss/foundation';
 @include foundation-everything;
+```
+
+&nbsp;
+
+## Command Line
+
+You can also use sassy-npm-importer via the command line.
+
+```
+node-sass --importer ./node_modules/sassy-npm-importer stylesheet.scss
 ```
 
 &nbsp;
@@ -109,6 +119,10 @@ More verbose output.
 
 * Since: 1.0.0
 
+```
+importer({ debug: true })
+```
+
 &nbsp;
 
 ### options.prefix
@@ -118,7 +132,7 @@ Attaches a prefix that rewrites to `npm://` to node modules.
 * Since: 1.0.0
 
 ```
-importer({prefix: '~/'})
+importer({ prefix: '~/' })
 ```
 
 ```
