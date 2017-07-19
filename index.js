@@ -1,3 +1,5 @@
+var path = require('path');
+
 // When render is run synchronously, there is no `done` callback.
 // For async we need to use the callback, and for sync just return the object.
 function maybeCallback(done) {
@@ -43,9 +45,9 @@ function createImporter(options) {
     //  to...
     //  "/Users/me/src/my-project/node_modules/node-module/stuff"
     var parts = url.replace(prefixRegex, '').split('/')
-    var packagePath = require.resolve(parts[0] + "/package.json").replace("/package.json", "")
+    var packagePath = require.resolve(parts[0] + path.sep + "package.json").replace("package.json", "")
     parts.shift(0) // drop package name since we have base path
-    var next = packagePath + "/" + parts.join("/");
+    var next = packagePath + path.sep + parts.join(path.sep);
 
     debug('Replaced with ' + next);
 
