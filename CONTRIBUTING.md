@@ -14,6 +14,7 @@ git clone https://github.com/revelrylabs/sassy-npm-importer
 5. Run `npm test`. If your specs pass, return to step 4.
 6. Implement your feature or bug fix.
 7. Re-run `npm test`. If your tests fail, return to step 6.
-9. Thoroughly comment your code.
+9. Thoroughly document and comment your code.
+10. Run `npm run doc` to check your documentation.
 11. Add, commit, and push your changes.
 12. Submit a pull request.

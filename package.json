@@ -16,7 +16,8 @@
   "homepage": "https://github.com/revelrylabs/sassy-npm-importer",
   "main": "index.js",
   "scripts": {
-    "test": "npm link ./sassy-npm-importer-linked-package && jasmine"
+    "test": "(cd sassy-npm-importer-linked-package; npm install) && npm link ./sassy-npm-importer-linked-package && jasmine",
+    "doc": "./node_modules/.bin/jsdoc index.js -d doc/"
   },
   "author": {
     "name": "Revelry Labs, LLC",
@@ -33,6 +34,7 @@
     "font-awesome": "^4.6.3",
     "foundation-sites": "^6.1.2",
     "jasmine": "^2.5.2",
+    "jsdoc": "^3.5.3",
     "node-sass": "^4.5.2"
   }
 }
