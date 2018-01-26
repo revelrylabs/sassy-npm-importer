@@ -19,6 +19,12 @@ function validateAndAddDefaultsToOptions(options) {
 }
 
 // Function that constructs the importer from options.
+/** createImporter
+ * Creates a new sass importer which can load from an npm module.
+ * @access public
+ * @param {{prefix: string}} options - the options for the importer
+ * @param {string} options.prefix - the prefix to use to indicate a load from node modules. Defaults to `npm://`
+ */
 function createImporter(options) {
   validateAndAddDefaultsToOptions(options = options || {});
   var prefixRegex = new RegExp('^'+options.prefix);

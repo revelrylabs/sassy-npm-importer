@@ -32,3 +32,12 @@ sassy-npm-importer-linked-package/node_modules
 
 # Optional REPL history
 .node_repl_history
+
+# Documentation directory
+/doc/*
+
+package-lock.json
+sassy-npm-importer-linked-package/package-lock.json
+
+# Coverage report
+.nyc_output/
