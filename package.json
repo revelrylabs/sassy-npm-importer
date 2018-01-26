@@ -16,7 +16,7 @@
   "homepage": "https://github.com/revelrylabs/sassy-npm-importer",
   "main": "index.js",
   "scripts": {
-    "test": "(cd sassy-npm-importer-linked-package; npm install) && npm link ./sassy-npm-importer-linked-package && jasmine",
+    "test": "(cd sassy-npm-importer-linked-package; npm install) && npm link ./sassy-npm-importer-linked-package && nyc jasmine",
     "doc": "./node_modules/.bin/jsdoc index.js -d doc/"
   },
   "author": {
@@ -35,6 +35,7 @@
     "foundation-sites": "^6.1.2",
     "jasmine": "^2.5.2",
     "jsdoc": "^3.5.3",
-    "node-sass": "^4.5.2"
+    "node-sass": "^4.5.2",
+    "nyc": "^11.4.1"
   }
 }
