@@ -1,6 +1,6 @@
 {
   "name": "sassy-npm-importer",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "It imports SASS from npm packages.",
   "keywords": [
     "sass",
@@ -14,9 +14,10 @@
     "webpack"
   ],
   "homepage": "https://github.com/revelrylabs/sassy-npm-importer",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "(cd sassy-npm-importer-linked-package; npm install) && npm link ./sassy-npm-importer-linked-package && nyc jasmine",
+    "pretest": "(cd spec/fixtures/sassy-npm-importer-linked-package; npm install) && npm link ./spec/fixtures/sassy-npm-importer-linked-package",
+    "test": "nyc jasmine",
     "doc": "./node_modules/.bin/jsdoc index.js -d doc/"
   },
   "author": {
@@ -36,6 +37,10 @@
     "jasmine": "^2.5.2",
     "jsdoc": "^3.5.3",
     "node-sass": "^4.5.2",
-    "nyc": "^11.4.1"
+    "nyc": "^11.4.1",
+    "reset-scss": "^1.0.0"
+  },
+  "dependencies": {
+    "resolve": "^1.5.0"
   }
 }
