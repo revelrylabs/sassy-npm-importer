@@ -2,7 +2,7 @@
 
 # sassy-npm-importer
 
-Import SASS from npm via a customizable prefix.
+Import SASS from npm via a customizable prefix, like:
 
 ```
 @import "npm://reset-scss/";
@@ -42,7 +42,9 @@ npm install --save node-sass                # for this example
 npm install --save foundation-sites         # example package
 ```
 
-This is an example of how to provide the importer directly to `node-sass`:
+## Usage
+
+In practice you would probably be using something like a Gulp task here, but this is how to provide the importer directly to `node-sass`:
 
 ### node: `index.js`
 
@@ -141,4 +143,9 @@ importer({ prefix: '~/' })
 @import 'npm://foundation-sites/scss/foundation'
 ```
 
-&nbsp;
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/revelrylabs/sassy-npm-importer. Check out [CONTRIBUTING.md](https://github.com/revelrylabs/sassy-npm-importer/blob/master/CONTRIBUTING.md) for more info.
+
+Everyone is welcome to participate in the project. We expect contributors to
+adhere the Contributor Covenant Code of Conduct (see [CODE_OF_CONDUCT.md](https://github.com/revelrylabs/sassy-npm-importer/blob/master/CODE_OF_CONDUCT.md)).

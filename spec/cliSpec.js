@@ -1,4 +1,5 @@
 var exec = require('child_process').exec;
+
 describe('command line interface', function() {
   it('can use sassy-npm-importer', function(done) {
     var output = exec(

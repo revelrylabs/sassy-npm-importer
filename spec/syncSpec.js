@@ -1,5 +1,5 @@
 var sass = require('./helpers/sass.js');
-var createImporter = require('../index.js');
+var createImporter = require('../src/index.js');
 
 try {
   require('sassy-npm-importer-linked-package');
